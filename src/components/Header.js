@@ -6,7 +6,7 @@ const Header = () => {
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           {/*logo*/}
-          <a href="#" className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 hover:opacity-80 transition-all cursor-pointer">
+          <a href="#home" className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 hover:opacity-80 transition-all cursor-pointer">
             Abhishek.
           </a>
           {/*button*/}

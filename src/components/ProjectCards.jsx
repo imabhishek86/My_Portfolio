@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineGithub } from "react-icons/ai"; // Import the GitHub icon
-import { FaCheckCircle, FaTasks, FaLeaf, FaGlobe, FaUtensils, FaBowlFood, FaBriefcase, FaLaptopCode, FaCloudSun } from "react-icons/fa"; // Added project icons
+import { FaCheckCircle, FaTasks, FaLeaf, FaUtensils, FaBriefcase, FaLaptopCode, FaCloudSun } from "react-icons/fa"; // Added project icons
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 
@@ -20,19 +20,6 @@ const Description = styled.div`
   transition: max-height 0.4s ease-in-out, -webkit-line-clamp 0.4s ease-in-out;
 `;
 
-const Button = styled.button`
-  display: none;
-  width: 100%;
-  padding: 10px;
-  background-color: ${({ theme }) => theme.white};
-  color: ${({ theme }) => theme.text_black};
-  font-size: 14px;
-  font-weight: 700;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.8s ease-in-out;
-`;
 
 // Adjust Card Height for Responsiveness
 const Card = styled(motion.div)`
@@ -56,9 +43,6 @@ const Card = styled(motion.div)`
     filter: brightness(1.1);
   }
 
-  &:hover ${Button} {
-    display: block;
-  }
 
   @media only screen and (max-width: 768px) {
     width: 100%; /* Ensure card takes full width on smaller screens */
@@ -131,13 +115,6 @@ const Tag = styled.span`
   border: 0.1px solid #854ce6;
 `;
 
-const Details = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0px;
-  padding: 0px 2px;
-`;
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -253,9 +230,6 @@ const ProjectCards = ({ project }) => {
   const [expanded, setExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const toggleDescription = () => {
-    setExpanded(!expanded);
-  };
 
   const handleMouseLeave = () => {
     setExpanded(false);
