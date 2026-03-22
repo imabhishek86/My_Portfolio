@@ -4,6 +4,9 @@ import { skills } from "../components/constants";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 
+import Tilt from "react-parallax-tilt";
+import MotionWrapper from "./MotionWrapper";
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -58,7 +61,7 @@ const SkillsContainer = styled.div`
   justify-content: center;
 `;
 
-const Skill = styled.div`
+const Skill = styled(motion.div)`
   width: 100%;
   max-width: 500px;
   background: ${({ theme }) => theme.card};
@@ -66,11 +69,6 @@ const Skill = styled.div`
   box-shadow: rgba(23, 92, 230, 0.15) 0px 4px 24px;
   border-radius: 16px;
   padding: 18px 36px;
-  transition: border-color 0.3s, transform 0.3s; /* Smooth transition */
-
-  &:hover {
-    border-color: #5a3fa0; /* Change border color on hover */
-  }
 
   @media (max-width: 768px) {
     max-width: 400px;
@@ -99,11 +97,10 @@ const SkillList = styled.div`
   margin-bottom: 20px;
 `;
 
-const SkillItem = styled.div`
+const SkillItem = styled(motion.div)`
   font-size: 16px;
   font-weight: 400;
-  color: ${({ theme }) => theme.text_primary + 80};
-  border: 1px solid ${({ theme }) => theme.text_primary + 80};
+  color: ${({ theme }) => (theme.text_primary ? theme.text_primary + 80 : "rgba(255, 255, 255, 0.6)")};
   border-radius: 12px;
   padding: 12px 16px;
   display: flex;
@@ -111,6 +108,14 @@ const SkillItem = styled.div`
   justify-content: center;
   gap: 8px;
   border: 0.1px solid #854ce6;
+  background: ${({ theme }) => theme.card ? theme.card + "80" : "rgba(18, 18, 43, 0.5)"};
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    border: 0.1px solid #854ce6;
+    box-shadow: 0 0 12px 2px rgba(133, 76, 230, 0.3);
+    transform: translateY(-3px);
+  }
 
   @media (max-width: 768px) {
     font-size: 14px;
@@ -132,44 +137,52 @@ const SkillIconWrapper = styled.div`
 
 const SkillCard = ({ skill }) => {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [scale, setScale] = useState(1); // State for scale
+  const [scale, setScale] = useState(1);
 
   const handleMouseMove = (e) => {
     const { clientX, clientY, currentTarget } = e;
     const { left, top, width, height } = currentTarget.getBoundingClientRect();
-    const x = ((clientX - left) / width - 0.5) * 30; // Max tilt 30 degrees
-    const y = ((clientY - top) / height - 0.5) * -30; // Max tilt -30 degrees
+    const x = ((clientX - left) / width - 0.5) * 20;
+    const y = ((clientY - top) / height - 0.5) * -20;
     setTilt({ x, y });
   };
 
   const handleMouseEnter = () => {
-    setScale(1.05); // Scale up on mouse enter
+    setScale(1.02);
   };
 
   const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 }); // Reset tilt on mouse leave
-    setScale(1); // Reset scale on mouse leave
+    setTilt({ x: 0, y: 0 });
+    setScale(1);
   };
 
   return (
-    <Skill
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter} // Handle scale on mouse enter
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transform: `perspective(1000px) rotateY(${tilt.x}deg) rotateX(${tilt.y}deg) scale(${scale})`, // Include scale in the transform
-      }}
-    >
-      <SkillTitle>{skill.title}</SkillTitle>
-      <SkillList>
-        {skill.skills.map((item) => (
-          <SkillItem key={item.name}>
-            <SkillIconWrapper>{item.icon}</SkillIconWrapper>
-            {item.name}
-          </SkillItem>
-        ))}
-      </SkillList>
-    </Skill>
+    <MotionWrapper>
+      <Skill
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          transform: `perspective(1000px) rotateY(${tilt.x}deg) rotateX(${tilt.y}deg)`,
+        }}
+      >
+        <SkillTitle>{skill.title}</SkillTitle>
+        <SkillList>
+          {skill.skills.map((item, index) => (
+            <SkillItem 
+              key={item.name}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <SkillIconWrapper>{item.icon}</SkillIconWrapper>
+              {item.name}
+            </SkillItem>
+          ))}
+        </SkillList>
+      </Skill>
+    </MotionWrapper>
   );
 };
 
@@ -203,11 +216,11 @@ const Skills = () => {
           viewport={{ once: false, amount: 0.1 }}
           style={{ width: "100%" }}
         >
-        <SkillsContainer>
-          {skills.map((skill) => (
-            <SkillCard key={skill.title} skill={skill} />
-          ))}
-        </SkillsContainer>
+          <SkillsContainer>
+            {skills.map((skill) => (
+              <SkillCard key={skill.title} skill={skill} />
+            ))}
+          </SkillsContainer>
         </motion.div>
       </Wrapper>
     </Container>

@@ -6,6 +6,8 @@ import { FiDownload } from "react-icons/fi";
 import ParticlesBackground from "./ParticlesBackground";
 import avatarImg from "../assets/avatar.png";
 
+import MotionWrapper from "./MotionWrapper";
+
 import { fadeIn } from "../variants";
 const Banner = () => {
   return (
@@ -65,19 +67,19 @@ const Banner = () => {
               viewport={{ once: false, amount: 0.7 }}
               className="flex max-w-max gap-x-6 items-center mb-12 mx-auto lg:mx-0"
             >
-              <a
-                href="/12322357_ABHISHEK CV (1).pdf"
-                download="12322357_ABHISHEK CV (1).pdf"
-                target="_blank"
-                rel="noreferrer"
-                className="btn btn-lg"
-                style={{ display: "inline-flex", alignItems: "center" }}
-              >
-                Download CV
-                <FiDownload style={{ marginLeft: "5px" }} />
-              </a>
-
-
+              <MotionWrapper>
+                <a
+                  href="/resume2026.pdf"
+                  download="Abhishek_Prasad_CV.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-lg"
+                  style={{ display: "inline-flex", alignItems: "center" }}
+                >
+                  Download CV
+                  <FiDownload style={{ marginLeft: "5px" }} />
+                </a>
+              </MotionWrapper>
             </motion.div>
             {/*socials*/}
             <motion.div
@@ -87,19 +89,22 @@ const Banner = () => {
               viewport={{ once: false, amount: 0.7 }}
               className="flex text-[20px] gap-x-6 max-w-max mx-auto lg:mx-0"
             >
-              <a
-                href="https://www.linkedin.com/in/iamabhishek86/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FaLinkedin />
-              </a>
-              <a href="https://github.com/imabhishek86/" target="_blank" rel="noreferrer">
-                <FaGithub />
-              </a>
-              <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" rel="noreferrer">
-                <FaEnvelope />
-              </a>
+              {[
+                { href: "https://www.linkedin.com/in/iamabhishek86/", icon: <FaLinkedin /> },
+                { href: "https://github.com/imabhishek86/", icon: <FaGithub /> },
+                { href: "https://mail.google.com/mail/u/0/#inbox", icon: <FaEnvelope /> }
+              ].map((social, index) => (
+                <MotionWrapper key={index}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-accent transition-colors"
+                  >
+                    {social.icon}
+                  </a>
+                </MotionWrapper>
+              ))}
             </motion.div>
           </div>
           {/*text*/}

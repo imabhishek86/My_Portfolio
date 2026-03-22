@@ -1,5 +1,7 @@
 import React from "react";
 import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import { motion } from "framer-motion";
+import MotionWrapper from "./MotionWrapper";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,46 +11,36 @@ const Footer = () => {
       <div className="container mx-auto px-4 flex flex-col items-center">
         {/* Navigation Links */}
         <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-8">
-          <a href="#home" className="text-white/70 hover:text-purple-400 hover:glow-purple transition-all duration-300 font-medium tracking-wide">
-            Home
-          </a>
-          <a href="#about" className="text-white/70 hover:text-purple-400 hover:drop-shadow-[0_0_8px_rgba(192,132,252,0.8)] transition-all duration-300 font-medium tracking-wide">
-            About
-          </a>
-          <a href="#projects" className="text-white/70 hover:text-purple-400 hover:drop-shadow-[0_0_8px_rgba(192,132,252,0.8)] transition-all duration-300 font-medium tracking-wide">
-            Projects
-          </a>
-          <a href="#contact" className="text-white/70 hover:text-purple-400 hover:drop-shadow-[0_0_8px_rgba(192,132,252,0.8)] transition-all duration-300 font-medium tracking-wide">
-            Contact
-          </a>
+          {["Home", "About", "Projects", "Contact"].map((item) => (
+            <MotionWrapper key={item}>
+              <a
+                href={`#${item.toLowerCase()}`}
+                className="text-white/70 font-medium tracking-wide hover:text-purple-400 transition-colors"
+              >
+                {item}
+              </a>
+            </MotionWrapper>
+          ))}
         </nav>
 
         {/* Social Icons */}
         <div className="flex gap-x-8 mb-8">
-          <a 
-            href="https://www.linkedin.com/in/iamabhishek86/" 
-            target="_blank" 
-            rel="noreferrer" 
-            className="text-white/60 hover:text-[#0077b5] hover:scale-125 hover:drop-shadow-[0_0_8px_rgba(0,119,181,0.8)] transition-all duration-300 text-2xl"
-          >
-            <FaLinkedin />
-          </a>
-          <a 
-            href="https://github.com/imabhishek86" 
-            target="_blank" 
-            rel="noreferrer" 
-            className="text-white/60 hover:text-white hover:scale-125 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-300 text-2xl"
-          >
-            <FaGithub />
-          </a>
-          <a 
-            href="https://mail.google.com/mail/u/0/#inbox" 
-            target="_blank" 
-            rel="noreferrer" 
-            className="text-white/60 hover:text-red-400 hover:scale-125 hover:drop-shadow-[0_0_8px_rgba(248,113,113,0.8)] transition-all duration-300 text-2xl"
-          >
-            <FaEnvelope />
-          </a>
+          {[
+            { href: "https://www.linkedin.com/in/iamabhishek86/", icon: <FaLinkedin />, color: "#0077b5", glow: "rgba(0,119,181,0.8)" },
+            { href: "https://github.com/imabhishek86", icon: <FaGithub />, color: "#ffffff", glow: "rgba(255,255,255,0.8)" },
+            { href: "https://mail.google.com/mail/u/0/#inbox", icon: <FaEnvelope />, color: "#f87171", glow: "rgba(248,113,113,0.8)" }
+          ].map((social, index) => (
+            <MotionWrapper key={index}>
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                className="text-white/60 text-2xl hover:text-accent transition-colors"
+              >
+                {social.icon}
+              </a>
+            </MotionWrapper>
+          ))}
         </div>
 
         {/* Copyright */}

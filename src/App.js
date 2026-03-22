@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme } from "./utils/Themes";
 // components
 import Banner from "./components/Banner";
 import Header from "./components/Header";
@@ -10,21 +12,29 @@ import Contact from "./components/Contact";
 import Skills from "./components/Skills";
 import Footer from "./components/Footer";
 import Achievements from "./components/Achievements";
+import FloatingContact from "./components/FloatingContact";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
+  const [darkMode, setDarkMode] = useState(true);
+
   return (
-    <div className="bg-site bg-no-repeat bg-cover overflow-hidden">
-      <Header />
-      <Banner />
-      <Nav />
-      <About />
-      <Skills />
-      <Education />
-      <Achievements />
-      <Projects />
-      <Contact />
-      <Footer />
-    </div>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <div className={`${darkMode ? "bg-site text-white" : "bg-white text-gray-900"} bg-no-repeat bg-cover overflow-hidden min-h-screen transition-all duration-500`}>
+        <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+        <Banner />
+        <Nav />
+        <About darkMode={darkMode} />
+        <Skills />
+        <Education />
+        <Achievements />
+        <Projects />
+        <Contact />
+        <Footer />
+        <FloatingContact />
+        <ScrollToTop />
+      </div>
+    </ThemeProvider>
   );
 };
 
