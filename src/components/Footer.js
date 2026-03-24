@@ -1,6 +1,5 @@
 import React from "react";
 import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
-import { motion } from "framer-motion";
 import MotionWrapper from "./MotionWrapper";
 
 const Footer = () => {

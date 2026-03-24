@@ -4,7 +4,6 @@ import { skills } from "../components/constants";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 
-import Tilt from "react-parallax-tilt";
 import MotionWrapper from "./MotionWrapper";
 
 const Container = styled.div`
@@ -137,7 +136,6 @@ const SkillIconWrapper = styled.div`
 
 const SkillCard = ({ skill }) => {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [scale, setScale] = useState(1);
 
   const handleMouseMove = (e) => {
     const { clientX, clientY, currentTarget } = e;
@@ -148,12 +146,11 @@ const SkillCard = ({ skill }) => {
   };
 
   const handleMouseEnter = () => {
-    setScale(1.02);
+    // scale is not used
   };
 
   const handleMouseLeave = () => {
     setTilt({ x: 0, y: 0 });
-    setScale(1);
   };
 
   return (
