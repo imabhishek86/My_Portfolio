@@ -28,7 +28,11 @@ const About = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.3 }}
-            className="w-full p-6 bg-transparent border-2 border-accent rounded-lg shadow-lg shadow-accent"
+            className="w-full p-6 bg-white/50 dark:bg-transparent rounded-lg shadow-lg"
+            style={{ 
+              border: `2px solid var(--primary-color)`,
+              boxShadow: `0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 15px var(--primary-color)` 
+            }}
           >
             {/* text */}
             <div className="flex-1">

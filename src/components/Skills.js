@@ -65,8 +65,8 @@ const Skill = styled(motion.div)`
   width: 100%;
   max-width: 500px;
   background: ${({ theme }) => theme.card};
-  border: 2px solid #854ce6; /* Thicker accent border */
-  box-shadow: rgba(23, 92, 230, 0.15) 0px 4px 24px;
+  border: 2px solid ${({ theme }) => theme.primary};
+  box-shadow: ${({ theme }) => theme.primary}20 0px 4px 24px;
   border-radius: 16px;
   padding: 18px 36px;
 
@@ -107,13 +107,13 @@ const SkillItem = styled(motion.div)`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border: 0.1px solid #854ce6;
+  border: 0.1px solid ${({ theme }) => theme.primary};
   background: ${({ theme }) => theme.card ? theme.card + "80" : "rgba(18, 18, 43, 0.5)"};
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    border: 0.1px solid #854ce6;
-    box-shadow: 0 0 12px 2px rgba(133, 76, 230, 0.3);
+    border: 0.1px solid ${({ theme }) => theme.primary};
+    box-shadow: 0 0 12px 2px ${({ theme }) => theme.primary}40;
     transform: translateY(-3px);
   }
 

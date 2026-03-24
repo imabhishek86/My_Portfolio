@@ -25,7 +25,8 @@ const Banner = () => {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.7 }}
-              className="text-[55px] font-bold leading-[0.8] lg:text-[85px] hover:text-accent transition-all duration-300 drop-shadow-[0_0_15px_rgba(133,76,230,0.5)]"
+              className="text-[55px] font-bold leading-[0.8] lg:text-[85px] hover:text-accent transition-all duration-300"
+              style={{ filter: `drop-shadow(0 0 15px var(--primary-color))` }}
             >
               ABHISHEK <span>PRASAD</span>
             </motion.h1>
@@ -37,7 +38,7 @@ const Banner = () => {
               className="mb-6 text-[24px] lg:text-[45px] font-secondary
             font-semibold uppercase leading-[1]"
             >
-              <span className="text-white mr-4">I am a</span>
+              <span className="text-gray-900 dark:text-white mr-4">I am a</span>
               <TypeAnimation
                 sequence={[
                   "Software Developer",
@@ -112,7 +113,8 @@ const Banner = () => {
             variants={fadeIn("down", 0.5)}
             initial="hidden"
             whileInView={"show"}
-            className="hidden lg:flex flex-1 max-w-[320px] lg:max-w-[482px] mx-auto hover:scale-105 transition-all duration-500 drop-shadow-[0_0_30px_rgba(133,76,230,0.6)]"
+            className="hidden lg:flex flex-1 max-w-[320px] lg:max-w-[482px] mx-auto hover:scale-105 transition-all duration-500"
+            style={{ filter: `drop-shadow(0 0 30px var(--primary-color))` }}
           >
             <img src={avatarImg} alt="Abhishek Prasad" className="relative z-10 rounded-full w-full object-cover aspect-square" />
           </motion.div>

@@ -74,6 +74,10 @@ const TimelineSection = styled.div`
   }
 `;
 
+const StyledTimelineConnector = styled(TimelineConnector)`
+  background: ${({ theme }) => theme.primary} !important;
+`;
+
 const Education = () => {
   return (
     <Container id="education" className="mt-20">
@@ -93,7 +97,7 @@ const Education = () => {
                 <TimelineSeparator>
                   <TimelineDot variant="outlined" color="secondary" />
                   {index !== education.length - 1 && (
-                    <TimelineConnector style={{ background: "#854CE6" }} />
+                    <StyledTimelineConnector />
                   )}
                 </TimelineSeparator>
               </TimelineItem>

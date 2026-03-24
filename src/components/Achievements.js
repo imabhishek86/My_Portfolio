@@ -4,6 +4,7 @@ import { achievements, certifications } from "./constants";
 import { FaCode, FaTrophy, FaCertificate, FaCloud, FaExternalLinkAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
+import MotionWrapper from "./MotionWrapper";
 
 const Container = styled.div`
   display: flex;
@@ -129,16 +130,27 @@ const ItemTitle = styled.div`
 const ViewButton = styled.a`
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 8px;
   width: fit-content;
   font-size: 14px;
   font-weight: 600;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.primary};
+  padding: 8px 16px;
+  border-radius: 8px;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(133, 76, 230, 0.3);
 
   &:hover {
-    color: ${({ theme }) => theme.text_primary};
+    box-shadow: 0 0 20px rgba(133, 76, 230, 0.6);
+    filter: brightness(1.1);
+  }
+
+  @media (max-width: 500px) {
+    padding: 6px 12px;
+    font-size: 12px;
   }
 `;
 
@@ -189,9 +201,11 @@ const Achievements = () => {
                     <ItemContent>
                       <ItemTitle>{item.title}</ItemTitle>
                       {item.link && (
-                        <ViewButton href={item.link} target="_blank" rel="noreferrer">
-                          View Profile <FaExternalLinkAlt size={12} />
-                        </ViewButton>
+                        <MotionWrapper>
+                          <ViewButton href={item.link} target="_blank" rel="noreferrer">
+                            View Profile <FaExternalLinkAlt size={12} />
+                          </ViewButton>
+                        </MotionWrapper>
                       )}
                     </ItemContent>
                   </Item>
@@ -216,9 +230,11 @@ const Achievements = () => {
                     <ItemContent>
                       <ItemTitle>{item.title}</ItemTitle>
                       {item.link && (
-                        <ViewButton href={item.link} target="_blank" rel="noreferrer">
-                          View Certificate <FaExternalLinkAlt size={12} />
-                        </ViewButton>
+                        <MotionWrapper>
+                          <ViewButton href={item.link} target="_blank" rel="noreferrer">
+                            View Certificate <FaExternalLinkAlt size={12} />
+                          </ViewButton>
+                        </MotionWrapper>
                       )}
                     </ItemContent>
                   </Item>

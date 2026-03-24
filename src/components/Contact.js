@@ -83,19 +83,19 @@ const Contact = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12 lg:mb-0">
               {contactInfo.map((info, index) => (
                 <MotionWrapper key={index}>
-                  <div className="bg-[#12122b]/50 border border-white/10 p-5 rounded-xl backdrop-blur-sm transition-all duration-300 group h-full">
+                  <div className="bg-black/5 dark:bg-[#12122b]/50 border border-black/5 dark:border-white/10 p-5 rounded-xl backdrop-blur-sm transition-all duration-300 group h-full">
                     <div className="flex items-center gap-x-4">
                       <div className="text-2xl text-accent group-hover:scale-110 transition-transform duration-300">
                         {info.icon}
                       </div>
                       <div>
-                        <h5 className="text-sm text-white/40 uppercase tracking-widest">{info.title}</h5>
+                        <h5 className="text-sm text-gray-500 dark:text-white/40 uppercase tracking-widest">{info.title}</h5>
                         {info.link ? (
-                          <a href={info.link} className="text-lg font-medium hover:text-accent transition-colors">
+                          <a href={info.link} className="text-lg font-medium text-gray-900 dark:text-white hover:text-accent transition-colors">
                             {info.value}
                           </a>
                         ) : (
-                          <p className="text-lg font-medium">{info.value}</p>
+                          <p className="text-lg font-medium text-gray-900 dark:text-white">{info.value}</p>
                         )}
                       </div>
                     </div>
@@ -113,26 +113,26 @@ const Contact = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.3 }}
-            className="flex-1 border border-white/10 rounded-2xl flex flex-col gap-y-6 p-8 items-start bg-[#12122b]/30 backdrop-blur-sm relative overflow-hidden group"
+            className="flex-1 border border-black/10 dark:border-white/10 rounded-2xl flex flex-col gap-y-6 p-8 items-start bg-black/5 dark:bg-[#12122b]/30 backdrop-blur-sm relative overflow-hidden group"
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             
             <input
-              className="bg-transparent border-b border-white/20 py-3 outline-none w-full placeholder:text-white/30 focus:border-accent transition-all"
+              className="bg-transparent border-b border-black/20 dark:border-white/20 py-3 outline-none w-full placeholder:text-gray-400 dark:placeholder:text-white/30 focus:border-accent transition-all text-gray-900 dark:text-white"
               type="text"
               placeholder="Your name"
               name="name"
               required
             />
             <input
-              className="bg-transparent border-b border-white/20 py-3 outline-none w-full placeholder:text-white/30 focus:border-accent transition-all"
+              className="bg-transparent border-b border-black/20 dark:border-white/20 py-3 outline-none w-full placeholder:text-gray-400 dark:placeholder:text-white/30 focus:border-accent transition-all text-gray-900 dark:text-white"
               type="email"
               placeholder="Your email"
               name="email"
               required
             />
             <textarea
-              className="bg-transparent border-b border-white/20 py-12 outline-none w-full placeholder:text-white/30 focus:border-accent transition-all resize-none mb-4"
+              className="bg-transparent border-b border-black/20 dark:border-white/20 py-12 outline-none w-full placeholder:text-gray-400 dark:placeholder:text-white/30 focus:border-accent transition-all resize-none mb-4 text-gray-900 dark:text-white"
               placeholder="Your message"
               name="message"
               required

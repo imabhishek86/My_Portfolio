@@ -125,7 +125,7 @@ export const projects = [
     image: "https://img.icons8.com/color/96/000000/resume-website.png",
     tags: ["React.js", "Tailwind CSS", "Framer Motion"],
     category: "web app",
-    github: "#",
+    github: "https://github.com/imabhishek86/My_Portfolio",
   },
   {
     id: 3,
@@ -189,11 +189,12 @@ export const achievements = [
 export const certifications = [
   {
     title: "Cloud Computing – NPTEL",
-    link: "https://nptel.ac.in/",
+    link: "https://drive.google.com/file/d/18oVBcky0tBry6_ZKqJGbCkHEgQ2RrBi8/view?usp=drive_link",
     icon: "FaCloud",
   },
   {
     title: "Full-Stack Web Development – CSE Pathshala",
+    link: "https://drive.google.com/file/d/1DXL-5Rx6nP-cvowtBUwxUDOQh7ejhrVy/view?usp=drive_link",
     icon: "FaCertificate",
   },
   {
@@ -203,12 +204,12 @@ export const certifications = [
   },
   {
     title: "Introduction to Hardware and OS – Coursera",
-    link: "https://www.coursera.org/",
+    link: "https://drive.google.com/file/d/1z-OFXO1_YW908waPA63V2olr4K9XuDva/view?usp=drive_link",
     icon: "FaCertificate",
   },
   {
     title: "Web Development – FreeCodeCamp",
-    link: "https://www.freecodecamp.org/",
+    link: "https://drive.google.com/file/d/12TsfgIZTojMLPTQ3TjEttFAHuyA0nknN/view?usp=drive_link",
     icon: "FaCertificate",
   },
 ];

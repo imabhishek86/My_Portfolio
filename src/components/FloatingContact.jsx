@@ -39,27 +39,29 @@ const FloatingContact = () => {
     {
       icon: <FaEnvelope />,
       href: `mailto:${email}`,
-      color: "bg-[#12122b]",
-      shadow: "shadow-[0_0_15px_rgba(168,85,247,0.4)]",
-      hoverShadow: "hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]",
-      borderColor: "border-purple-500/30",
-      hoverBorder: "hover:border-purple-400",
+      color: "bg-gray-100 dark:bg-[#12122b]",
+      shadow: "shadow-lg",
+      hoverShadow: "hover:shadow-xl",
+      borderColor: "border-black/5 dark:border-purple-500/30",
+      hoverBorder: "hover:border-accent",
       label: "Send Email",
       size: "h-12 w-12",
       iconSize: "text-xl",
+      textColor: "text-gray-900 dark:text-white",
     },
     {
       icon: <FaWhatsapp />,
       href: `https://wa.me/${whatsappNumber}`,
       color: "bg-[#25d366]",
-      shadow: "shadow-[0_0_15px_rgba(37,211,102,0.4)]",
-      hoverShadow: "hover:shadow-[0_0_25px_rgba(37,211,102,0.6)]",
+      shadow: "shadow-lg dark:shadow-[0_0_15px_rgba(37,211,102,0.4)]",
+      hoverShadow: "hover:shadow-xl dark:hover:shadow-[0_0_25px_rgba(37,211,102,0.6)]",
       borderColor: "border-transparent",
       hoverBorder: "border-transparent",
       label: "Chat on WhatsApp",
       size: "h-14 w-14",
       iconSize: "text-3xl",
       isWhatsApp: true,
+      textColor: "text-white",
     },
   ];
 
@@ -77,7 +79,7 @@ const FloatingContact = () => {
                 transition={{ duration: 0.3, delay: index * 0.1 }}
                 className="group relative flex items-center justify-end"
               >
-                <span className="absolute right-16 scale-0 rounded bg-gray-800 px-3 py-1 text-xs text-white transition-all group-hover:scale-100 whitespace-nowrap">
+                <span className="absolute right-16 scale-0 rounded bg-gray-900 dark:bg-gray-800 px-3 py-1 text-xs text-white transition-all group-hover:scale-100 whitespace-nowrap">
                   {item.label}
                 </span>
                 
@@ -92,7 +94,7 @@ const FloatingContact = () => {
                   onClick={(e) => handleClick(e)}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  className={`relative overflow-hidden flex ${item.size} items-center justify-center rounded-full ${item.color} text-white border ${item.borderColor} ${item.shadow} ${item.hoverShadow} ${item.hoverBorder} transition-all duration-300 z-10`}
+                  className={`relative overflow-hidden flex ${item.size} items-center justify-center rounded-full ${item.color} ${item.textColor} border ${item.borderColor} ${item.shadow} ${item.hoverShadow} ${item.hoverBorder} transition-all duration-300 z-10`}
                 >
                   <div className={item.iconSize}>{item.icon}</div>
                   {/* Ripple elements */}
@@ -120,7 +122,8 @@ const FloatingContact = () => {
         onClick={(e) => handleClick(e, () => setIsOpen(!isOpen))}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className={`relative overflow-hidden flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-[0_0_20px_rgba(133,76,230,0.5)] hover:shadow-[0_0_30px_rgba(133,76,230,0.8)] transition-all duration-300 z-[1000]`}
+        className={`relative overflow-hidden flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white transition-all duration-300 z-[1000]`}
+        style={{ boxShadow: `0 0 20px var(--primary-color)` }}
       >
         <motion.div
           animate={{ rotate: isOpen ? 45 : 0 }}

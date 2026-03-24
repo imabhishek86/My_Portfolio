@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { AiOutlineGithub, AiOutlineClose } from "react-icons/ai"; // Import the GitHub and Close icons
-import { FaCheckCircle, FaTasks, FaLeaf, FaUtensils, FaBriefcase, FaLaptopCode, FaCloudSun, FaExternalLinkAlt } from "react-icons/fa"; // Added project icons
+import { FaGithub, FaCheckCircle, FaTasks, FaLeaf, FaUtensils, FaBriefcase, FaLaptopCode, FaCloudSun, FaExternalLinkAlt } from "react-icons/fa"; // Added FaGithub
+import { AiOutlineClose } from "react-icons/ai"; // Keep AiOutlineClose
 import { motion, AnimatePresence } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import MotionWrapper from "./MotionWrapper";
@@ -129,13 +129,14 @@ const Avatar = styled.img`
   }
 `;
 
-const GitHubIcon = styled(AiOutlineGithub)`
+const GitHubIcon = styled(FaGithub)`
   font-size: 20px;
   color: ${({ theme }) => theme.text_secondary};
   transition: transform 0.3s ease-in-out;
 
   &:hover {
     transform: scale(1.5);
+    color: ${({ theme }) => theme.primary};
   }
 `;
 
@@ -148,14 +149,18 @@ const ButtonGroup = styled.div`
 `;
 
 const ProjectButton = styled.a`
-  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   text-align: center;
   font-size: 14px;
   font-weight: 600;
   color: ${({ theme }) => theme.primary};
-  padding: 8px 12px;
+  padding: 10px 12px;
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.primary + 15};
+  background-color: transparent;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
   border: 1px solid ${({ theme }) => theme.primary};
@@ -163,6 +168,7 @@ const ProjectButton = styled.a`
   &:hover {
     background-color: ${({ theme }) => theme.primary};
     color: ${({ theme }) => theme.white};
+    box-shadow: 0 0 15px rgba(133, 76, 230, 0.4);
   }
 `;
 
@@ -260,7 +266,7 @@ const ProjectCards = ({ project }) => {
     } else if (title.includes("weather")) {
       return <FaCloudSun />;
     } else if (project.category === "github repos") {
-      return <AiOutlineGithub />;
+      return <FaGithub />;
     }
     return <FaTasks />;
   };
@@ -291,9 +297,14 @@ const ProjectCards = ({ project }) => {
             ))}
           </Members>
           <ButtonGroup>
-            <DetailsButton onClick={() => setIsModalOpen(true)}>
-              View Details
-            </DetailsButton>
+            <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
+              <ProjectButton href={project.github} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>
+                <FaGithub size={18} /> GitHub
+              </ProjectButton>
+              <DetailsButton onClick={() => setIsModalOpen(true)}>
+                View Details
+              </DetailsButton>
+            </div>
           </ButtonGroup>
         </Card>
       </Tilt>
@@ -320,22 +331,22 @@ const ProjectCards = ({ project }) => {
               <div className="flex flex-col gap-6">
                 <div className="flex items-center gap-4">
                   <div className="text-4xl text-accent">{getProjectIcon()}</div>
-                  <h2 className="text-3xl font-bold text-white">{project.title}</h2>
+                  <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{project.title}</h2>
                 </div>
 
-                <div className="w-full h-64 bg-accent/10 rounded-xl flex items-center justify-center text-7xl text-accent shadow-inner border border-accent/20">
+                <div className="w-full h-64 bg-accent/5 dark:bg-accent/10 rounded-xl flex items-center justify-center text-7xl text-accent shadow-inner border border-accent/20">
                   {getProjectIcon()}
                 </div>
 
                 <div className="flex flex-col gap-4">
-                  <h3 className="text-xl font-semibold text-white border-b border-accent/30 pb-2">Description</h3>
-                  <p className="text-gray-400 leading-relaxed text-lg">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white border-b border-accent/30 pb-2">Description</h3>
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg">
                     {project.description}
                   </p>
                 </div>
 
                 <div className="flex flex-col gap-4">
-                  <h3 className="text-xl font-semibold text-white border-b border-accent/30 pb-2">Technologies Used</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white border-b border-accent/30 pb-2">Technologies Used</h3>
                   <div className="flex flex-wrap gap-2">
                     {project.tags?.map((tag, index) => (
                       <Tag key={index} className="px-4 py-2 text-sm">{tag}</Tag>
@@ -345,12 +356,12 @@ const ProjectCards = ({ project }) => {
 
                 {project.members && project.members.length > 0 && (
                   <div className="flex flex-col gap-4">
-                    <h3 className="text-xl font-semibold text-white border-b border-accent/30 pb-2">Collaborators</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white border-b border-accent/30 pb-2">Collaborators</h3>
                     <div className="flex items-center gap-2">
                        {project.members.map((member, index) => (
-                        <div key={index} className="flex items-center gap-2 bg-[#12122b] px-3 py-2 rounded-lg border border-accent/20">
+                        <div key={index} className="flex items-center gap-2 bg-black/5 dark:bg-[#12122b] px-3 py-2 rounded-lg border border-accent/20">
                           <Avatar src={member.img} style={{ margin: 0 }} />
-                          <span className="text-gray-300">{member.name || "Member"}</span>
+                          <span className="text-gray-700 dark:text-gray-300">{member.name || "Member"}</span>
                         </div>
                       ))}
                     </div>
@@ -362,9 +373,9 @@ const ProjectCards = ({ project }) => {
                     href={project.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-[#12122b] border border-accent rounded-xl text-white font-bold hover:bg-accent hover:text-white transition-all duration-300"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-black/5 dark:bg-[#12122b] border border-accent rounded-xl text-gray-900 dark:text-white font-bold hover:bg-accent hover:text-white transition-all duration-300"
                   >
-                    <AiOutlineGithub className="text-xl" /> View GitHub
+                    <FaGithub className="text-xl" /> View GitHub
                   </a>
                   {project.demo && (
                     <a
